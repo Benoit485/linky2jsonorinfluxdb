@@ -1,0 +1,6 @@
+# Linky cron.d configuration
+
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+0 5 * * * root /opt/linky2jsonorinfluxdb/getDatasLastDay.sh
