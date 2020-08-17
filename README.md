@@ -37,6 +37,16 @@ You can activate for record Json and dir.
 
 You can activate and configure InfluxDb
 
+### Cron
+
+You can set cron for execute automatic every days.
+
+You only need to create link from file to cron dir.
+
+`ln -s /opt/linky2jsonorinfluxdb/cron.d-conf /etc/cron.d/linky`
+
+Or copy file and edit this if you want cron another this than at 05:00.
+
 ### Cookie : internalAuthId
 You need to find this cookie for connection can work.
 
