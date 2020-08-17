@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Include config file
-. ./config.sh
+. `dirname "$0"`/config.sh
 
 export LAST_DAY=true
 

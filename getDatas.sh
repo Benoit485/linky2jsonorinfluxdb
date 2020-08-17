@@ -3,7 +3,7 @@
 # Execute this file only one time for first generate
 
 # Include config file
-. ./config.sh
+. `dirname "$0"`/config.sh
 
 export LAST_DAY=false
 
