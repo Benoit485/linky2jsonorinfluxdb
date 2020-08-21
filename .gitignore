@@ -10,3 +10,4 @@
 /public/api/charts.json
 /.idea
 /bin/mechanize.log
+/var/log/cron.log
