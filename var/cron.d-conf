@@ -1,6 +1,15 @@
 # Linky cron.d configuration
 
-SHELL=/bin/sh
-PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+# config
+BASEDIR="/opt/linky2jsonorinfluxdb"
 
-0 5 * * * root /opt/linky2jsonorinfluxdb/getDatasLastDay.sh
+SHELL=/bin/sh
+
+0 5 * * * root $BASEDIR/bin/getDatasLastDay.sh 1>>$BASEDIR/var/log/cron.log 2>&1
+
+# need to copy this file inside /etc/cron.d
+# symbolic link not working (WRONG FILE OWNER)
+# sudo cp /opt/linky2jsonorinfluxdb/var/cron.d-conf /etc/cron.d/linky
+
+# for look if have error with cron, run
+# sudo tail -n 200 -f /var/log/syslog | grep cron
