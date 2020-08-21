@@ -52,18 +52,76 @@ $(document).ready(function()
                     valueSuffix: ' kWh',
                     valueDecimals: 3
                 }
-            }]
+            }/*, {
+                id: 'month_on_last_year',
+                name: 'Année précedente',
+                color: '#edf320',
+                type: 'line',
+                //linkedTo: ':previous',
+                data: month_on_last_year,
+                tooltip: {
+                    valueSuffix: ' kWh',
+                    valueDecimals: 3
+                }
+            }*/]
         });
+
+        var yAxisHeight = 0;
+        var index = 0;
+        var energy_average_day = [];
+        data.power_last_day.forEach(function(value)
+        {
+            yAxisHeight = Math.max(yAxisHeight, value[1]);
+
+            if(index === 0)
+            {
+                index = value[1];
+                return null;
+            }
+
+            energy_average_day.push([value[0], (value[1] + index) / 2 * 0.001]);
+            index = 0;
+        });
+
+        console.log(yAxisHeight);
 
         charts.create('conso_w_jour', {
 
             xAxisMinRange: 'm',
 
             yAxis: [{
+                title: {
+                    text: 'Puissance (Watt)'
+                },
                 labels: {
                     format: '{value} W'
-                }
+                },
+                //lineWidth: 1,
+                min: 0,
+                max: yAxisHeight
+            }, {
+                title: {
+                    text: 'Energie (kWh)',
+                    style: {
+                        color: '#FFffFF',
+                    }
+                },
+                labels: {
+                    format: '{value} kWh',
+                    style: {
+                        color: '#FFffFF',
+                    }
+                },
+                min: 0,
+                max: yAxisHeight * 0.001,
+                opposite: 1
             }],
+
+            plotOptions: {
+                column: {
+                    opacity: 0.8
+                }
+            },
 
             series : [{
                 id: 'power_last_day',
@@ -75,6 +133,18 @@ $(document).ready(function()
                 tooltip: {
                     valueSuffix: ' W',
                     valueDecimals: 0
+                }
+            }, {
+                id: 'energy_average_day',
+                name: 'Energie moyenne',
+                color: '#9238c9',
+                type: 'column',
+                yAxis: 1,
+                //linkedTo: ':previous',
+                data: energy_average_day,
+                tooltip: {
+                    valueSuffix: ' kWh',
+                    valueDecimals: 3
                 }
             }]
         });
