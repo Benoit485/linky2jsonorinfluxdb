@@ -6,6 +6,9 @@
 ini_set('display_errors', 'On');
 error_reporting(E_ALL);
 
+echo 'Minifing Js and Css';
+echo "\n";
+
 $dirJs = realpath(__DIR__.'/../public/static/js');
 $dirCss = realpath(__DIR__.'/../public/static/css');
 
@@ -13,6 +16,7 @@ $filesJs = scandir($dirJs);
 $filesCss = scandir($dirCss);
 
 $date = date('Y-m-d H:i:s');
+$regex = '#\n \* Generate date : \d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\n#';
 
 foreach($filesJs as $fileJs)
 {
@@ -30,6 +34,21 @@ foreach($filesJs as $fileJs)
     $code .= "\n";
     $code .= exec("python3 -m rjsmin < $dirJs/$fileJs | perl -p -e 's/\n//'");
     //echo $code;
+
+    // test if file exist already and if not it's same then not update
+    if(is_file("$dirJs/$fileJsMin") )
+    {
+        $oldCode = file_get_contents("$dirJs/$fileJsMin");
+        $oldCodeWithoutDate = preg_replace($regex, '__DATE__', $oldCode);
+
+        $codeWithoutDate = preg_replace($regex, '__DATE__', $code);
+
+        if($oldCodeWithoutDate === $codeWithoutDate)
+        {
+            continue;
+        }
+    }
+
     echo "\n$fileJs => $fileJsMin";
 
     if( ! file_put_contents("$dirJs/$fileJsMin", $code) )
@@ -58,6 +77,21 @@ foreach($filesCss as $fileCss)
     $code .= "\n";
     $code .= exec("python3 -m rcssmin < $dirCss/$fileCss | perl -p -e 's/\n//'");
     //echo $code;
+
+    // test if file exist already and if not it's same then not update
+    if(is_file("$dirCss/$fileCssMin") )
+    {
+        $oldCode = file_get_contents("$dirCss/$fileCssMin");
+        $oldCodeWithoutDate = preg_replace($regex, '__DATE__', $oldCode);
+
+        $codeWithoutDate = preg_replace($regex, '__DATE__', $code);
+
+        if($oldCodeWithoutDate === $codeWithoutDate)
+        {
+            continue;
+        }
+    }
+
     echo "\n$fileCss => $fileCssMin";
 
     if( ! file_put_contents("$dirCss/$fileCssMin", $code) )
