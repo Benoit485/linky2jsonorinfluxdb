@@ -12,4 +12,5 @@ export INFLUXDB_USERNAME="user"
 export INFLUXDB_PASSWORD="pass"
 
 export TO_JSON=false
-export JSON_DIR="/www/linky_json"
+export TO_JSON_CHART=false
+export JSON_DIR="$BASEDIR/public/api"
