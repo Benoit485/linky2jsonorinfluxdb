@@ -34,21 +34,21 @@ Put your credentials for Enedis website : username and password.
 
 You need to put Cookie : internalAuthId for work withour Captcha (See after how to do).
 
-You can desactivate for record Json and set dir.
+You can desactivate for record Json and set dir (You need to keep on for good charts).
 
-You can desactivate for record Json graph and set dir.
+You can desactivate for record Json charts.
 
-You can activate and configure InfluxDb
+You can activate and configure InfluxDb.
 
 ### Cron
 
 You can set cron for execute automatic every days.
 
-You only need to create link from file to cron dir.
+You only need to copy cron.d-conf from file to cron dir.
 
-`ln -s /opt/linky2jsonorinfluxdb/cron.d-conf /etc/cron.d/linky`
+`sudo cp /opt/linky2jsonorinfluxdb/var/cron.d-conf /etc/cron.d/linky`
 
-Or copy file and edit this if you want cron another this than at 05:00.
+And edit file this if you want cron another time than at 05:00am.
 
 ### Cookie : internalAuthId
 You need to find this cookie for connection can work.
@@ -66,10 +66,12 @@ Copy this value to config.sh script.
 If you need help or you have request, you can open new Issue
 
 ### Author
-**Benoit485 (Benoît MERLE)
+- **Benoit485 (Benoît MERLE)
+**
+- ** [Miko53](https://github.com/miko53/ "Miko53") (For Enedis scrapper library)
 **
 
-*You can give for thanks from [Paypal](https://www.paypal.me/benoit485/5 "Paypal") 
-*
+**You can give for thanks from [Paypal](https://www.paypal.me/benoit485/5 "Paypal") 
+
 
 ![](https://static.infosplatch.fr/_/infosplatch/logo400.png)
