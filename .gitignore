@@ -8,7 +8,5 @@
 /public/api/last_day_enedis.json
 /public/api/last_day_hours_enedis.json
 /public/api/charts.json
-
-
-
-
+/.idea
+/bin/mechanize.log
