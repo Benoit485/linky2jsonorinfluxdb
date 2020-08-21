@@ -23,6 +23,7 @@ Thanks to Miko53 for his ruby script.
 * `git clone https://Benoit485/linky2jsonorinfluxdb.git`
 * `cd ./linky2jsonorinfluxdb`
 * `cp config-sampe.sh config.sh`
+* `sudo apt install ruby-json ruby-mechanize ruby-byebug ruby-influxdb`
 
 ### Configuration
 Edit config file :
