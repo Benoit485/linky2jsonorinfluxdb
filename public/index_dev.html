@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <title>Logs Linky</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Library -->
+    <script type="text/javascript" src="https://static.infosplatch.fr/jquery/3.2.1/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="https://static.infosplatch.fr/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://static.infosplatch.fr/highcharts/8.1.2/code/highcharts.js"></script>
+    <script type="text/javascript" src="https://static.infosplatch.fr/highcharts/8.1.2/code/highcharts-more.js"></script>
+    <script type="text/javascript" src="https://static.infosplatch.fr/highcharts/8.1.2/code/highcharts-3d.js"></script>
+    <script type="text/javascript" src="https://static.infosplatch.fr/highcharts/8.1.2/code/modules/exporting.js"></script>
+    <script type="text/javascript" src="https://static.infosplatch.fr/highcharts/8.1.2/code/modules/export-data.js"></script>
+    <script type="text/javascript" src="https://static.infosplatch.fr/highcharts/8.1.2/code/modules/xrange.js"></script>
+    <script type="text/javascript" src="https://static.infosplatch.fr/moment/2.24.0/moment-with-locales.min.js"></script>
+    <script type="text/javascript" src="https://static.infosplatch.fr/moment-timezone/0.5.31/moment-timezone-data-fr.min.js"></script>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://static.infosplatch.fr/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- Library CSS -->
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+
+    <!-- Scripts -->
+    <script type="text/javascript" src="/static/js/charts.class.min.js"></script>
+    <script type="text/javascript" src="/static/js/graphiques.min.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/static/css/style.min.css">
+</head>
+
+<body>
+
+<div class="container" style="margin-bottom: 70px">
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mMenu">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/"><span><img src="favicon.ico" alt=""> Logs Linky</span></a>
+        </div>
+        <div class="collapse navbar-collapse" id="mMenu">
+            <ul class="nav navbar-nav">
+                <li><a href="/index_dev.html">Home</a></li>
+                <li><a href="https://github.com/Benoit485/linky2jsonorinfluxdb">GitHub</a></li>
+            </ul>
+        </div>
+
+    </nav>
+
+    <div class="row">
+        <div class="row mt-2">
+            <div class="col-sm-12">
+                <p class="TitreCadre text-center"><span class="glyphicon glyphicon-fire"></span>Fichiers API</p>
+                <br>
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <span><u>Depuis Enedis :</u></span>
+                        <ul>
+                            <li><a style="color: darksalmon" href="/api/all_enedis.json">Toutes les données de kWh</a> (3 ans)</li>
+                            <li><a style="color: darksalmon" href="/api/all_hours_enedis.json">Toutes les données de kW => puissance</a> (7 jours)</li>
+                            <li><a style="color: darksalmon" href="/api/last_day_enedis.json">kWh consommé "hier"</a></li>
+                            <li><a style="color: darksalmon" href="/api/last_day_hours_enedis.json">Puissance en kW "hier"</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-4">
+                        <span><u>Formatés :</u></span>
+                        <ul>
+                            <li><a style="color: darksalmon" href="/api/all.json">Toutes les données de kWh</a></li>
+                            <li><a style="color: darksalmon" href="/api/all_hours.json">Toutes les données de kW => puissance</a> </li>
+                            <li><a style="color: darksalmon" href="/api/last_day.json">kWh consommé le dernier jour maj</a></li>
+                            <li><a style="color: darksalmon" href="/api/last_day_hours.json">Puissance en kW le dernier jour maj</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-4">
+                        <span><u>Formatés pour graphiques (HighCharts : datetime) :</u></span>
+                        <ul>
+                            <li><a style="color: darksalmon" href="/api/charts.json">Toutes les données de graphiques</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <br>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-sm-12 text-center">
+                <p class="TitreCadre"><span class="glyphicon glyphicon-fire"></span>Dernière mise a jour</p>
+                <br>
+                    <p><b><span id="derniereMaj"></span></b></p>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-sm-12">
+                <p class="TitreCadre"><span class="glyphicon glyphicon-fire"></span>Energie kWh journalière (30 derniers jours)</p>
+                <br>
+                <div id="graph_energy_days" class="divChart"></div>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-sm-12">
+                <p class="TitreCadre"><span class="glyphicon glyphicon-fire"></span>Utilisation journalière (Dernier jour)</p>
+                <br>
+                <div id="conso_w_jour" class="divChart"> </div>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-sm-12">
+                <p class="TitreCadre"><span class="glyphicon glyphicon-fire"></span>Energie kWh journalière (Dernière année)</p>
+                <br>
+                <div id="graph_last_year" class="divChart"></div>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="row">
+                <div class="col-sm-12">
+                    <p class="TitreCadre"><span class="glyphicon glyphicon-fire"></span> Utilisation journalière</p>
+                    <br>
+                    <div id="graph_conso_w" class="divChart"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="row">
+                <div class="col-sm-12">
+                    <p class="TitreCadre"><span class="glyphicon glyphicon-fire"></span> Utilisation par mois</p>
+                    <br>
+                    <div id="energy_by_month__every_months" class="divChart"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="row">
+                <div class="col-sm-12">
+                    <p class="TitreCadre"><span class="glyphicon glyphicon-fire"></span> Utilisation par années</p>
+                    <br>
+                    <div id="energy_by_year__every_years" class="divChart2"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!--
+    <div>
+        <footer class="navbar navbar-inverse navbar-fixed-bottom navbar-brand text-center">
+
+            <p>
+            </p>
+
+        </footer>
+    </div>
+    -->
+
+
+</div>
+
+</body>
+
+</html>
