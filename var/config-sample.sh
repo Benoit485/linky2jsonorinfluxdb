@@ -11,6 +11,6 @@ export INFLUXDB_DATABASE="database"
 export INFLUXDB_USERNAME="user"
 export INFLUXDB_PASSWORD="pass"
 
-export TO_JSON=false
-export TO_JSON_CHART=false
+export TO_JSON=true
+export TO_JSON_CHART=true
 export JSON_DIR="$BASEDIR/public/api"
