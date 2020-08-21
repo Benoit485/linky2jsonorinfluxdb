@@ -13,14 +13,16 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 #load 'linky_meter.rb'
-require_relative '../linky_meter/lib/linky_meter'
+require_relative '../../linky_meter/lib/linky_meter'
 require 'byebug'
 require 'json'
 
 # local lib
 require_relative './lib/parse_json_result.rb'
 require_relative './lib/parse_json_result_h.rb'
+require_relative './lib/merge_json.rb'
 require_relative './lib/record_json.rb'
+require_relative './lib/record_json_chart.rb'
 require_relative './lib/record_influxdb.rb'
 
 username = ENV['LINKY_USERNAME']
@@ -29,6 +31,7 @@ authentication_cookie = ENV['LINKY_COOKIE_INTERNAL_AUTH_ID']
 
 toIdb = ENV['TO_INFLUXDB'] == 'true'
 toJson = ENV['TO_JSON'] == 'true'
+toJsonChart = ENV['TO_JSON_CHART'] == 'true'
 
 lastDay = ENV['LAST_DAY'] == 'true'
 
@@ -62,12 +65,21 @@ resultH = linky.get(startDate2, endDate, LinkyMeter::BY_HOUR)
 resultF = parse_json_result(lastDay, result)
 resultHF = parse_json_result_h(resultH)
 
+ # Every time we add new datas to old datas :
+mergedResultF = merge_json(resultF);
+mergedResultHF = merge_json_h(resultHF);
+
 # Record in Json if activated
 if toJson
-    record_json(lastDay, result, resultF, resultH, resultHF)
+    record_json(lastDay, result, resultF, resultH, resultHF, mergedResultF, mergedResultHF)
 end
 
-# Record in InfluxDb if acctivated
+# Record in Json Chart (HighChart, datetime) if activated
+if toJsonChart
+    record_json_chart(mergedResultF, mergedResultHF)
+end
+
+# Record in InfluxDb if activated
 if toIdb
     record_influxdb(lastDay, result, resultF, resultH, resultHF)
 end

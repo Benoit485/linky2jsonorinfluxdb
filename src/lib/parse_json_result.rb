@@ -103,12 +103,7 @@ def parse_json_result(lastDay, result)
     resultF += ','
     resultF += resultF2
 
-    if lastDay
-        resultF += ',"value":'
-        resultF += lastValue
-    end
-
-    resultF += ',"unit":"kWh"'
+    resultF += ''
     resultF += '}'
 
     resultF = JSON.parse(resultF)

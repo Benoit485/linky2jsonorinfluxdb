@@ -20,7 +20,7 @@ def parse_json_result_h(resultH)
 
         i += 1
     end
-    resultHF += ',"unit":"kW"}'
+    resultHF += '}'
 
     resultHF = JSON.parse(resultHF)
 
