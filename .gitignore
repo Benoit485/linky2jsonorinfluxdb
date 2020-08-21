@@ -1,0 +1,14 @@
+/var/config.sh
+/public/api/all.json
+/public/api/all_hours.json
+/public/api/last_day.json
+/public/api/last_day_hours.json
+/public/api/all_enedis.json
+/public/api/all_hours_enedis.json
+/public/api/last_day_enedis.json
+/public/api/last_day_hours_enedis.json
+/public/api/charts.json
+
+
+
+
