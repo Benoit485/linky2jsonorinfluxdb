@@ -25,18 +25,18 @@ require_relative './lib/record_json.rb'
 require_relative './lib/record_json_chart.rb'
 require_relative './lib/record_influxdb.rb'
 
-username = ENV['LINKY_USERNAME']
-password = ENV['LINKY_PASSWORD']
-authentication_cookie = ENV['LINKY_COOKIE_INTERNAL_AUTH_ID']
+username = ENV['LINKY_USERNAME'];
+password = ENV['LINKY_PASSWORD'];
+authentication_cookie = ENV['LINKY_COOKIE_INTERNAL_AUTH_ID'];
 
-toIdb = ENV['TO_INFLUXDB'] == 'true'
-toJson = ENV['TO_JSON'] == 'true'
-toJsonChart = ENV['TO_JSON_CHART'] == 'true'
+toIdb = ENV['TO_INFLUXDB'] == 'true';
+toJson = ENV['TO_JSON'] == 'true';
+toJsonChart = ENV['TO_JSON_CHART'] == 'true';
 
-lastDay = ENV['LAST_DAY'] == 'true'
+lastDay = ENV['LAST_DAY'] == 'true';
 
-linky = LinkyMeter.new(true)
-linky.connect(username, password, authentication_cookie)
+linky = LinkyMeter.new(true);
+linky.connect(username, password, authentication_cookie);
 
 # Group possible :
 # LinkyMeter::BY_YEAR
@@ -46,24 +46,24 @@ linky.connect(username, password, authentication_cookie)
 
 if lastDay
    # Dates
-   endDate = DateTime.now
-   startDate = startDate2 = endDate.prev_day
+   endDate = DateTime.now;
+   startDate = startDate2 = endDate.prev_day;
 else
    # Dates
    endDate = DateTime.now
-   startDate = endDate.prev_year(3) # by days, can get 3 last years
-   startDate2 = endDate.prev_day(7) # by hours, can get 7 last day
+   startDate = endDate.prev_year(3); # by days, can get 3 last years
+   startDate2 = endDate.prev_day(7); # by hours, can get 7 last day
 end
 
 # Result for day
-result = linky.get(startDate, endDate, LinkyMeter::BY_DAY)
+result = linky.get(startDate, endDate, LinkyMeter::BY_DAY);
 
 # Result for hours
-resultH = linky.get(startDate2, endDate, LinkyMeter::BY_HOUR)
+resultH = linky.get(startDate2, endDate, LinkyMeter::BY_HOUR);
 
 # Format results
-resultF = parse_json_result(lastDay, result)
-resultHF = parse_json_result_h(resultH)
+resultF = parse_json_result(lastDay, result);
+resultHF = parse_json_result_h(resultH);
 
  # Every time we add new datas to old datas :
 mergedResultF = merge_json(resultF);
@@ -71,15 +71,15 @@ mergedResultHF = merge_json_h(resultHF);
 
 # Record in Json if activated
 if toJson
-    record_json(lastDay, result, resultF, resultH, resultHF, mergedResultF, mergedResultHF)
+    record_json(lastDay, result, resultF, resultH, resultHF, mergedResultF, mergedResultHF);
 end
 
 # Record in Json Chart (HighChart, datetime) if activated
 if toJsonChart
-    record_json_chart(mergedResultF, mergedResultHF)
+    record_json_chart(mergedResultF, mergedResultHF);
 end
 
 # Record in InfluxDb if activated
 if toIdb
-    record_influxdb(lastDay, result, resultF, resultH, resultHF)
+    record_influxdb(lastDay, result, resultF, resultH, resultHF);
 end

@@ -78,7 +78,11 @@ def record_json_chart(mergedResultF, mergedResultHF)
     # energy by day last week
     energyByDayLastWeek = [];
     total = energyEveryDays.length;
-    i = 7;
+    if total > 7
+        i = 7;
+    else
+        i = total;
+    end
     until i == 0
         j = total-i;
         date = energyEveryDays[j][0];
@@ -89,18 +93,28 @@ def record_json_chart(mergedResultF, mergedResultHF)
     # energy by day previous week
     energyByDayPreviousWeek = [];
     total = energyEveryDays.length;
-    i = 14;
-    until i == 7
-        j = total-i;
-        date = energyEveryDays[j][0];
-        energyByDayPreviousWeek.push([date, energyEveryDays[j][1]]);
-        i -= 1;
+    if total > 14
+        i = 14;
+    else
+        i = total;
+    end
+    if i > 7
+        until i == 7
+            j = total-i;
+            date = energyEveryDays[j][0];
+            energyByDayPreviousWeek.push([date, energyEveryDays[j][1]]);
+            i -= 1;
+        end
     end
 
     # energy by day last month
     energyByDayLastMonth = [];
     total = energyEveryDays.length;
-    i = 31;
+    if total > 31
+        i = 31;
+    else
+        i = total;
+    end
     until i == 0
         j = total-i;
         date = energyEveryDays[j][0];
@@ -111,12 +125,18 @@ def record_json_chart(mergedResultF, mergedResultHF)
     # energy by day previous month
     energyByDayPreviousMonth = [];
     total = energyEveryDays.length;
-    i = 62;
-    until i == 31
-        j = total-i;
-        date = energyEveryDays[j][0];
-        energyByDayPreviousMonth.push([date, energyEveryDays[j][1]]);
-        i -= 1;
+    if total > 62
+        i = 62;
+    else
+        i = total;
+    end
+    if i > 31
+        until i == 31
+            j = total-i;
+            date = energyEveryDays[j][0];
+            energyByDayPreviousMonth.push([date, energyEveryDays[j][1]]);
+            i -= 1;
+        end
     end
 
     # energy by day last year
@@ -137,12 +157,12 @@ def record_json_chart(mergedResultF, mergedResultHF)
     # energy by day previous year
     energyByDayPreviousYear = [];
     total = energyEveryDays.length;
-    if total > 365
-        if total > (365*2)
-            i = (365*2);
-        else
-            i = total;
-        end
+    if total > (365*2)
+        i = (365*2);
+    else
+        i = total;
+    end
+    if i > 365
         until i == 365
             j = total-i;
             date = energyEveryDays[j][0];
@@ -153,23 +173,29 @@ def record_json_chart(mergedResultF, mergedResultHF)
 
     # energy by week
     energyByWeekEveryWeeks = [];
-    mergedResultF['week_more'].each do |key, value|
-        date = DateTime.iso8601(value['date_start']).to_time.to_i*1000;
-        energyByWeekEveryWeeks.push([date, value['value']]);
+    unless mergedResultF['week_more'].nil?
+        mergedResultF['week_more'].each do |key, value|
+            date = DateTime.iso8601(value['date_start']).to_time.to_i*1000;
+            energyByWeekEveryWeeks.push([date, value['value']]);
+        end
     end
 
     # energy by month
     energyByMonthEveryMonths = [];
-    mergedResultF['month_more'].each do |key, value|
-        date = DateTime.iso8601(value['date_start']).to_time.to_i*1000;
-        energyByMonthEveryMonths.push([date, value['value']]);
+    unless mergedResultF['month_more'].nil?
+        mergedResultF['month_more'].each do |key, value|
+            date = DateTime.iso8601(value['date_start']).to_time.to_i*1000;
+            energyByMonthEveryMonths.push([date, value['value']]);
+        end
     end
 
     # energy by years
     energyByYearEveryYears = [];
-    mergedResultF['year_more'].each do |key, value|
-        date = DateTime.iso8601(value['date_start']).to_time.to_i*1000;
-        energyByYearEveryYears.push([date, value['value']]);
+    unless mergedResultF['year_more'].nil?
+        mergedResultF['year_more'].each do |key, value|
+            date = DateTime.iso8601(value['date_start']).to_time.to_i*1000;
+            energyByYearEveryYears.push([date, value['value']]);
+        end
     end
 
     # make charts

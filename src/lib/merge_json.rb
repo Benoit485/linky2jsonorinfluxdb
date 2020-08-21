@@ -23,7 +23,7 @@ def merge_json_h(resultHF)
 
     # Vars
     jsonDir = ENV['JSON_DIR'];
-    filename = jsonDir + '/all.json';
+    filename = jsonDir + '/all_hours.json';
 
     if not File.file?(filename)
         return resultHF;
