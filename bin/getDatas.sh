@@ -15,5 +15,9 @@ export LAST_DAY=false
 # Delete old log
 echo "" > ./mechanize.log
 
+# Echo for record exec
+echo "getLastDatasLastDay.sh :"
+echo "Exec date : `date +'%Y-%m-%d %H:%M:%S'`"
+
 # Exec ruby
 ruby $BASEDIR/src/linky_get_datas.rb
