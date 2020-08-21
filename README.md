@@ -6,7 +6,7 @@ This program work with [Miko53 linky_meter](https://github.com/miko53/linky_mete
 
 This version is compatible of new API of Enedis (deployed from june 2020).
 
-Thanks to Miko53 for his ruby script.
+Thanks to [Miko53](https://github.com/miko53/ "Miko53") for his ruby script.
 
 ### Dependencies
 
@@ -22,19 +22,21 @@ Thanks to Miko53 for his ruby script.
 * `git clone https://github.com/miko53/linky_meter.git`
 * `git clone https://Benoit485/linky2jsonorinfluxdb.git`
 * `cd ./linky2jsonorinfluxdb`
-* `cp config-sampe.sh config.sh`
+* `cp ./var/config-sample.sh ./var/config.sh`
 * `sudo apt install ruby-json ruby-mechanize ruby-byebug ruby-influxdb`
 
 ### Configuration
 Edit config file :
 
-`nano /opt/linky2jsonorinfluxdb/config.sh`
+`nano /opt/linky2jsonorinfluxdb/var/config.sh`
 
 Put your credentials for Enedis website : username and password.
 
 You need to put Cookie : internalAuthId for work withour Captcha (See after how to do).
 
-You can activate for record Json and dir.
+You can desactivate for record Json and set dir.
+
+You can desactivate for record Json graph and set dir.
 
 You can activate and configure InfluxDb
 
