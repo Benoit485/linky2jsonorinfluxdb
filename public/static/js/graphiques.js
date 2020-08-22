@@ -243,7 +243,7 @@ $(document).ready(function()
 
             tooltip: {
                 valueSuffix: ' kWh (<b>{point.percentage:.1f}%</b>)',
-                valueDecimals: 3
+                valueDecimals: 0
             },
 
             plotOptions: {
