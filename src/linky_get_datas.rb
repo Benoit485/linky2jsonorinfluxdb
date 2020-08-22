@@ -55,11 +55,28 @@ else
    startDate2 = endDate.prev_day(7); # by hours, can get 7 last day
 end
 
-# Result for day
-result = linky.get(startDate, endDate, LinkyMeter::BY_DAY);
+# Result for day, and retry if error with enedis website
+begin
+    result = linky.get(startDate, endDate, LinkyMeter::BY_DAY);
+rescue Exception => e
+    p "Error : #{e.message}";
+    #p e.backtrace.inspect
+    sleep(3600)
+    newExec = DateTime.now.strftime("%Y-%m-%d %H:%M:%S");
+    p "Exec again : #{newExec}";
+    retry
+ end
 
-# Result for hours
-resultH = linky.get(startDate2, endDate, LinkyMeter::BY_HOUR);
+# Result for hours, and retry if error with enedis website
+begin
+    resultH = linky.get(startDate2, endDate, LinkyMeter::BY_HOUR);
+rescue Exception => e
+    p "Error : #{e.message}";
+    sleep(3600)
+    newExec = DateTime.now.strftime("%Y-%m-%d %H:%M:%S");
+    p "Exec again : #{newExec}";
+    retry
+ end
 
 # Format results
 resultF = parse_json_result(lastDay, result);
