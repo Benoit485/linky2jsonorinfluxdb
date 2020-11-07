@@ -1,54 +1,43 @@
 # Linky to Json / InfluxDb
 
-This program can make json files in your repertory than you want for share with another script , website or program (Same Node-red, Domoticz or Jeedom) and  record data to InfluxDb database.
+This program is write in Javascript and work with NodeJS
 
-This program work with [Miko53 linky_meter](https://github.com/miko53/linky_meter "Miko53 linky_meter") for connect to Enedis website.
+He can get your data from Enedis website for save in files (sqlite) and show in website interface or send Json to another interface (Same Node-red, Domoticz or Jeedom).
+
+He also can record data to InfluxDb database.
 
 This version is compatible of new API of Enedis (deployed from june 2020).
 
-Thanks to [Miko53](https://github.com/miko53/ "Miko53") for his ruby script.
+Thanks to [Miko53](https://github.com/miko53/ "Miko53") for his ruby script for know how to connect to Enedis.
 
 ### Dependencies
 
-* ruby
-* ruby-json
-* ruby-mechanize
-* ruby-byebug
-* ruby-influxdb
-*  [Miko53 linky_meter](https://github.com/miko53/linky_meter "Miko53 linky_meter") 
+* NodeJS
+* Yarn
 
 ### Instatallation
-* `cd /opt`
-* `git clone https://github.com/miko53/linky_meter.git`
+* `cd /www`
 * `git clone https://Benoit485/linky2jsonorinfluxdb.git`
 * `cd ./linky2jsonorinfluxdb`
-* `cp ./var/config-sample.sh ./var/config.sh`
-* `sudo apt install ruby-json ruby-mechanize ruby-byebug ruby-influxdb`
+* `cp ./var/config-sample.json ./var/config.json`
+* `yarn install`
 
 ### Configuration
 Edit config file :
 
-`nano /opt/linky2jsonorinfluxdb/var/config.sh`
+`nano /www/linky2jsonorinfluxdb/var/config.json`
 
 Put your credentials for Enedis website : username and password.
 
-You need to put Cookie : internalAuthId for work withour Captcha (See after how to do).
-
-You can desactivate for record Json and set dir (You need to keep on for good charts).
-
-You can desactivate for record Json charts.
+You need to put Cookie : internalAuthId for work without Captcha (See after how to do).
 
 You can activate and configure InfluxDb.
 
 ### Cron
 
-You can set cron for execute automatic every days.
+You can set cron in config file same unix cron
 
-You only need to copy cron.d-conf from file to cron dir.
-
-`sudo cp /opt/linky2jsonorinfluxdb/var/cron.d-conf /etc/cron.d/linky`
-
-And edit file this if you want cron another time than at 05:00am.
+You can see this website : [Crontab.guru](https://crontab.guru/), for know how to write cron time line
 
 ### Cookie : internalAuthId
 You need to find this cookie for connection can work.
@@ -68,10 +57,10 @@ If you need help or you have request, you can open new Issue
 ### Author
 - **Benoit485 (Benoît MERLE)
 **
-- ** [Miko53](https://github.com/miko53/ "Miko53") (For Enedis scrapper library)
+- ** [Miko53](https://github.com/miko53/ "Miko53") (For Enedis scrapper base library)
 **
 
-**You can give for thanks from [Paypal](https://www.paypal.me/benoit485/5 "Paypal") 
+**You can give for thanks from [Paypal](https://www.paypal.me/benoit485/5 "Paypal")
 
 
 ![](https://static.infosplatch.fr/_/infosplatch/logo400.png)
