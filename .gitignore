@@ -1,13 +1,32 @@
-/var/config.sh
-/public/api/all.json
-/public/api/all_hours.json
-/public/api/last_day.json
-/public/api/last_day_hours.json
-/public/api/all_enedis.json
-/public/api/all_hours_enedis.json
-/public/api/last_day_enedis.json
-/public/api/last_day_hours_enedis.json
-/public/api/charts.json
-/.idea
-/bin/mechanize.log
-/var/log/cron.log
+# Config and data
+config.json
+data/*
+konnector-dev-config.json
+
+# NPM
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Build
+build/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+
+# Editors / IDEs
+.floo
+.flooignore
+.idea/
+
+# Default
+# /!\ KEEP THIS SECTION THE LAST ONE
+!.gitkeep
