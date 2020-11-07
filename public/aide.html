@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <title>Aide - Logs Linky</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Library -->
+    <script type="text/javascript" src="https://static.infosplatch.fr/jquery/3.2.1/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="https://static.infosplatch.fr/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://static.infosplatch.fr/moment/2.24.0/moment-with-locales.min.js"></script>
+    <script type="text/javascript" src="https://static.infosplatch.fr/moment-timezone/0.5.31/moment-timezone-data-fr.min.js"></script>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://static.infosplatch.fr/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- Library CSS -->
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/static/css/style.min.css">
+
+    <!-- JS -->
+    <script type="text/javascript" src="/static/js/aide.min.js"></script>
+</head>
+
+<body>
+
+<div class="container" style="margin-bottom: 70px">
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mMenu">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/"><span><img src="favicon.ico" alt=""> Logs Linky</span></a>
+        </div>
+        <div class="collapse navbar-collapse" id="mMenu">
+            <ul class="nav navbar-nav">
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="/aide.html">Aide (API)</a></li>
+                <li><a href="https://github.com/Benoit485/linky2jsonorinfluxdb">GitHub</a></li>
+            </ul>
+        </div>
+
+    </nav>
+
+    <div class="row">
+        <noscript>
+            <div class="row mt-2">
+                <div class="col-sm-12 text-center">
+                    <p class="TitreCadre">
+                        <span style="color: #ff792a;font-weight: bold; font-size: 80px; text-decoration: underline;">
+                            <span>Attention !</span>
+                        </span>
+                    </p>
+                    <br>
+                    <p>
+                        <span style="color: #ff792a; background-color: aqua; font-weight: bold; font-size: 50px;">
+                            <span>Le Javascript est requis pour afficher les données</span>
+                        </span>
+                    </p>
+                </div>
+            </div>
+        </noscript>
+        <div class="row mt-2">
+            <div class="col-sm-12 text-center">
+                <p class="TitreCadre text-center"><span class="glyphicon glyphicon-fire"></span> API</p>
+                <br>
+
+                <p>It is possible to get all result in same time if you write them separate by dash (-)</p>
+                <p>You can use date begin / end on all API.</p>
+
+                <br>
+
+                <p><a href="javascript:void(0);" class="link-api" target="_blank"><strong><em><span style="color: #339966;">http{{ssl}}://{{host}}/api/</span></em></strong><strong><em><span style="color: #cc251c;">day</span></em></strong></a></p>
+                <p><a href="javascript:void(0);" class="link-api" target="_blank"><strong><em><span style="color: #339966;">http{{ssl}}://{{host}}/api/</span></em></strong><strong><em><span style="color: #cc251c;">day</span></em></strong><strong><em><span style="color: #339966;">/</span></em></strong><strong><em><span style="color: #cc251c;">{{dateStart}}</span></em></strong></a></p>
+                <p><a href="javascript:void(0);" class="link-api" target="_blank"><strong><em><span style="color: #339966;">http{{ssl}}://{{host}}/api/</span></em></strong><strong><em><span style="color: #cc251c;">day</span></em></strong><strong><em><span style="color: #339966;">/</span></em></strong><strong><em><span style="color: #cc251c;">{{dateStart}}</span></em></strong><strong><em><span style="color: #339966;">/</span></em></strong><strong><em><span style="color: #cc251c;">now</span></em></strong></a></p>
+                <p><a href="javascript:void(0);" class="link-api" target="_blank"><strong><em><span style="color: #339966;">http{{ssl}}://{{host}}/api/</span></em></strong><strong><em><span style="color: #cc251c;">day</span></em></strong><strong><em><span style="color: #339966;">/</span></em></strong><strong><em><span style="color: #cc251c;">{{dateStart}}</span></em></strong><strong><em><span style="color: #339966;">/</span></em></strong><strong><em><span style="color: #cc251c;">{{dateEnd}}</span></em></strong></a></p>
+                <p><a href="javascript:void(0);" class="link-api" target="_blank"><strong><em><span style="color: #339966;">http{{ssl}}://{{host}}/api/</span></em></strong><strong><em><span style="color: #cc251c;">week</span></em></strong></a></p>
+                <p><a href="javascript:void(0);" class="link-api" target="_blank"><strong><em><span style="color: #339966;">http{{ssl}}://{{host}}/api/</span></em></strong><strong><em><span style="color: #cc251c;">week</span></em></strong><strong><em><span style="color: #339966;">/</span></em></strong><strong><em><span style="color: #cc251c;">{{dateStart2}}</span></em></strong></a></p>
+                <p><a href="javascript:void(0);" class="link-api" target="_blank"><strong><em><span style="color: #339966;">http{{ssl}}://{{host}}/api/</span></em></strong><strong><em><span style="color: #cc251c;">week</span></em></strong><strong><em><span style="color: #339966;">/</span></em></strong><strong><em><span style="color: #cc251c;">{{dateStart2}}</span></em></strong><strong><em><span style="color: #339966;">/</span></em></strong><strong><em><span style="color: #cc251c;">now</span></em></strong></a></p>
+                <p><a href="javascript:void(0);" class="link-api" target="_blank"><strong><em><span style="color: #339966;">http{{ssl}}://{{host}}/api/</span></em></strong><strong><em><span style="color: #cc251c;">week</span></em></strong><strong><em><span style="color: #339966;">/</span></em></strong><strong><em><span style="color: #cc251c;">{{dateStart2}}</span></em></strong><strong><em><span style="color: #339966;">/</span></em></strong><strong><em><span style="color: #cc251c;">{{dateEnd2}}</span></em></strong></a></p>
+                <p><a href="javascript:void(0);" class="link-api" target="_blank"><strong><em><span style="color: #339966;">http{{ssl}}://{{host}}/api/</span></em></strong><strong><em><span style="color: #cc251c;">month</span></em></strong></a></p>
+                <p><a href="javascript:void(0);" class="link-api" target="_blank"><strong><em><span style="color: #339966;">http{{ssl}}://{{host}}/api/</span></em></strong><strong><em><span style="color: #cc251c;">month</span></em></strong><strong><em><span style="color: #339966;">/</span></em></strong><strong><em><span style="color: #cc251c;">{{dateStart3}}</span></em></strong></a></p>
+                <p><a href="javascript:void(0);" class="link-api" target="_blank"><strong><em><span style="color: #339966;">http{{ssl}}://{{host}}/api/</span></em></strong><strong><em><span style="color: #cc251c;">month</span></em></strong><strong><em><span style="color: #339966;">/</span></em></strong><strong><em><span style="color: #cc251c;">{{dateStart3}}</span></em></strong><strong><em><span style="color: #339966;">/</span></em></strong><strong><em><span style="color: #cc251c;">now</span></em></strong></a></p>
+                <p><a href="javascript:void(0);" class="link-api" target="_blank"><strong><em><span style="color: #339966;">http{{ssl}}://{{host}}/api/</span></em></strong><strong><em><span style="color: #cc251c;">month</span></em></strong><strong><em><span style="color: #339966;">/</span></em></strong><strong><em><span style="color: #cc251c;">{{dateStart3}}</span></em></strong><strong><em><span style="color: #339966;">/</span></em></strong><strong><em><span style="color: #cc251c;">{{dateEnd3}}</span></em></strong></a></p>
+                <p><a href="javascript:void(0);" class="link-api" target="_blank"><strong><em><span style="color: #339966;">http{{ssl}}://{{host}}/api/</span></em></strong><strong><em><span style="color: #cc251c;">year</span></em></strong></a></p>
+                <p><a href="javascript:void(0);" class="link-api" target="_blank"><strong><em><span style="color: #339966;">http{{ssl}}://{{host}}/api/</span></em></strong><strong><em><span style="color: #cc251c;">power</span></em></strong></a></p>
+                <p><a href="javascript:void(0);" class="link-api" target="_blank"><strong><em><span style="color: #339966;">http{{ssl}}://{{host}}/api/</span></em></strong><strong><em><span style="color: #cc251c;">all</span></em></strong></a></p>
+                <p><a href="javascript:void(0);" class="link-api" target="_blank"><strong><em><span style="color: #339966;">http{{ssl}}://{{host}}/api/</span></em></strong><strong><em><span style="color: #cc251c;">full:day</span></em></strong></a></p>
+                <p><a href="javascript:void(0);" class="link-api" target="_blank"><strong><em><span style="color: #339966;">http{{ssl}}://{{host}}/api/</span></em></strong><strong><em><span style="color: #cc251c;">full:week</span></em></strong></a></p>
+                <p><a href="javascript:void(0);" class="link-api" target="_blank"><strong><em><span style="color: #339966;">http{{ssl}}://{{host}}/api/</span></em></strong><strong><em><span style="color: #cc251c;">full:month</span></em></strong></a></p>
+                <p><a href="javascript:void(0);" class="link-api" target="_blank"><strong><em><span style="color: #339966;">http{{ssl}}://{{host}}/api/</span></em></strong><strong><em><span style="color: #cc251c;">full:year</span></em></strong></a></p>
+                <p><a href="javascript:void(0);" class="link-api" target="_blank"><strong><em><span style="color: #339966;">http{{ssl}}://{{host}}/api/</span></em></strong><strong><em><span style="color: #cc251c;">full:power</span></em></strong></a></p>
+                <p><a href="javascript:void(0);" class="link-api" target="_blank"><strong><em><span style="color: #339966;">http{{ssl}}://{{host}}/api/</span></em></strong><strong><em><span style="color: #cc251c;">full:all</span></em></strong></a></p>
+                <p><a href="javascript:void(0);" class="link-api" target="_blank"><strong><em><span style="color: #339966;">http{{ssl}}://{{host}}/api/</span></em></strong><strong><em><span style="color: #cc251c;">month-year</span></em></strong></a></p>
+
+                <br>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-sm-12 text-center">
+                <p class="TitreCadre"><span class="glyphicon glyphicon-fire"></span> API Chart</p>
+                <br>
+
+                <p><a href="javascript:void(0);" class="link-api" target="_blank"><strong><em><span style="color: #339966;">http{{ssl}}://{{host}}/api/</span></em></strong><strong><em><span style="color: #cc251c;">chart:day</span></em></strong></a></p>
+                <p><a href="javascript:void(0);" class="link-api" target="_blank"><strong><em><span style="color: #339966;">http{{ssl}}://{{host}}/api/</span></em></strong><strong><em><span style="color: #cc251c;">chart:week</span></em></strong></a></p>
+                <p><a href="javascript:void(0);" class="link-api" target="_blank"><strong><em><span style="color: #339966;">http{{ssl}}://{{host}}/api/</span></em></strong><strong><em><span style="color: #cc251c;">chart:month</span></em></strong></a></p>
+                <p><a href="javascript:void(0);" class="link-api" target="_blank"><strong><em><span style="color: #339966;">http{{ssl}}://{{host}}/api/</span></em></strong><strong><em><span style="color: #cc251c;">chart:year</span></em></strong></a></p>
+                <p><a href="javascript:void(0);" class="link-api" target="_blank"><strong><em><span style="color: #339966;">http{{ssl}}://{{host}}/api/</span></em></strong><strong><em><span style="color: #cc251c;">chart:power</span></em></strong></a></p>
+                <p><a href="javascript:void(0);" class="link-api" target="_blank"><strong><em><span style="color: #339966;">http{{ssl}}://{{host}}/api/</span></em></strong><strong><em><span style="color: #cc251c;">chart:all</span></em></strong></a></p>
+                <p><a href="javascript:void(0);" class="link-api" target="_blank"><strong><em><span style="color: #339966;">http{{ssl}}://{{host}}/api/</span></em></strong><strong><em><span style="color: #cc251c;">chart:all</span></em></strong><strong><em><span style="color: #339966;">/</span></em></strong><strong><em><span style="color: #cc251c;">{{dateStart4}}</span></em></strong></a></p>
+                <p><a href="javascript:void(0);" class="link-api" target="_blank"><strong><em><span style="color: #339966;">http{{ssl}}://{{host}}/api/</span></em></strong><strong><em><span style="color: #cc251c;">chart:all</span></em></strong><strong><em><span style="color: #339966;">/</span></em></strong><strong><em><span style="color: #cc251c;">{{dateStart4}}</span></em></strong><strong><em><span style="color: #339966;">/</span></em></strong><strong><em><span style="color: #cc251c;">now</span></em></strong></a></p>
+                <p><a href="javascript:void(0);" class="link-api" target="_blank"><strong><em><span style="color: #339966;">http{{ssl}}://{{host}}/api/</span></em></strong><strong><em><span style="color: #cc251c;">chart:all</span></em></strong><strong><em><span style="color: #339966;">/</span></em></strong><strong><em><span style="color: #cc251c;">{{dateStart4}}</span></em></strong><strong><em><span style="color: #339966;">/</span></em></strong><strong><em><span style="color: #cc251c;">{{dateEnd4}}</span></em></strong></a></p>
+                <p><a href="javascript:void(0);" class="link-api" target="_blank"><strong><em><span style="color: #339966;">http{{ssl}}://{{host}}/api/</span></em></strong><strong><em><span style="color: #cc251c;">chart:month-chart:year</span></em></strong></a></p>
+
+                <br>
+
+                <p>Do not react with a given date, but take the last record in the database :</p>
+                <p><a href="javascript:void(0);" class="link-api" target="_blank"><strong><em><span style="color: #339966;">http{{ssl}}://{{host}}/api/</span></em></strong><strong><em><span style="color: #cc251c;">chart:day_last_week</span></em></strong></a></p>
+                <p><a href="javascript:void(0);" class="link-api" target="_blank"><strong><em><span style="color: #339966;">http{{ssl}}://{{host}}/api/</span></em></strong><strong><em><span style="color: #cc251c;">chart:day_previous_week</span></em></strong></a></p>
+                <p><a href="javascript:void(0);" class="link-api" target="_blank"><strong><em><span style="color: #339966;">http{{ssl}}://{{host}}/api/</span></em></strong><strong><em><span style="color: #cc251c;">chart:day_last_month</span></em></strong></a></p>
+                <p><a href="javascript:void(0);" class="link-api" target="_blank"><strong><em><span style="color: #339966;">http{{ssl}}://{{host}}/api/</span></em></strong><strong><em><span style="color: #cc251c;">chart:day_previous_month</span></em></strong></a></p>
+                <p><a href="javascript:void(0);" class="link-api" target="_blank"><strong><em><span style="color: #339966;">http{{ssl}}://{{host}}/api/</span></em></strong><strong><em><span style="color: #cc251c;">chart:day_last_year</span></em></strong></a></p>
+                <p><a href="javascript:void(0);" class="link-api" target="_blank"><strong><em><span style="color: #339966;">http{{ssl}}://{{host}}/api/</span></em></strong><strong><em><span style="color: #cc251c;">chart:day_previous_year</span></em></strong></a></p>
+                <p><a href="javascript:void(0);" class="link-api" target="_blank"><strong><em><span style="color: #339966;">http{{ssl}}://{{host}}/api/</span></em></strong><strong><em><span style="color: #cc251c;">chart:month_this_year</span></em></strong></a></p>
+                <p><a href="javascript:void(0);" class="link-api" target="_blank"><strong><em><span style="color: #339966;">http{{ssl}}://{{host}}/api/</span></em></strong><strong><em><span style="color: #cc251c;">chart:power_last_day</span></em></strong></a></p>
+                <p><a href="javascript:void(0);" class="link-api" target="_blank"><strong><em><span style="color: #339966;">http{{ssl}}://{{host}}/api/</span></em></strong><strong><em><span style="color: #cc251c;">chart:all_from_last</span></em></strong></a></p>
+
+            </div>
+        </div>
+
+    <!--
+    <div>
+        <footer class="navbar navbar-inverse navbar-fixed-bottom navbar-brand text-center">
+
+            <p>
+            </p>
+
+        </footer>
+    </div>
+    -->
+
+
+</div>
+
+</body>
+
+</html>
