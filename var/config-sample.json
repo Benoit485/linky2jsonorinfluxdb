@@ -1,0 +1,17 @@
+{
+  "enedis" : {
+    "username" : "mail@org.tld",
+    "password" : "password",
+    "cookieInternalAuthId" : "cookie : internalAuthId"
+  },
+  "influxDb" : {
+    "enabled" : false,
+    "host" : "localhost",
+    "port" : "8086",
+    "database" : "database",
+    "username" : "user",
+    "password" : "pass"
+  },
+  "cron" : "0 5 * * *"
+}
+
