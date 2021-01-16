@@ -364,6 +364,7 @@ async function getEnergyByType(type, dateStr, json, full, label = null) {
     // chart
     if (full === null) {
         if (label === null) {
+            /*eslint no-param-reassign: "off"*/
             label = 'chart:' + type
         }
         return getEnergyByTypeChartPoints(label, json, data)
