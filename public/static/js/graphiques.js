@@ -7,7 +7,8 @@ $(document).ready(function() {
         'chart:day_previous_year',
         'chart:power',
         'chart:year',
-        'chart:month_this_year'
+        'chart:month_this_year',
+        'chart:month_last_year'
     ]
     var urlApiGraph = '/api/' + getChart.join('-')
 
@@ -319,9 +320,6 @@ $(document).ready(function() {
             function(value) {
                 var moment1 = moment(value[0])
 
-                if (moment1.format('YYYY') !== moment().format('YYYY'))
-                    return null
-
                 var monthStr = moment1.format('MMMM YYYY')
                 monthStr = monthStr.charAt(0).toUpperCase() + monthStr.slice(1)
                 return [monthStr, value[1]]
@@ -374,6 +372,66 @@ $(document).ready(function() {
                     color: '#1ac0ff',
                     type: 'pie',
                     data: data['chart:month_this_year']
+                }
+            ]
+        })
+
+        data['chart:month_last_year'] = data['chart:month_last_year'].map(
+            function(value) {
+                var moment1 = moment(value[0])
+
+                var monthStr = moment1.format('MMMM YYYY')
+                monthStr = monthStr.charAt(0).toUpperCase() + monthStr.slice(1)
+                return [monthStr, value[1]]
+            }
+        )
+
+        charts.create('energy_by_month_last_year__every_months', {
+            chart: {
+                type: 'pie',
+                backgroundColor: '#3B3B3B',
+                options3d: {
+                    enabled: true,
+                    alpha: 45,
+                    beta: 0
+                }
+            },
+
+            yAxis: [
+                {
+                    labels: {
+                        format: '{value} kWh'
+                    }
+                }
+            ],
+
+            tooltip: {
+                valueSuffix: ' kWh (<b>{point.percentage:.1f}%</b>)',
+                valueDecimals: 0
+            },
+
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    depth: 35,
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.name}',
+                        style: {
+                            color: '#FFf'
+                        }
+                    }
+                }
+            },
+
+            series: [
+                {
+                    id: 'energy_by_month_last_year__every_months',
+                    name: 'Energie consommée',
+                    color: '#1ac0ff',
+                    type: 'pie',
+                    data: data['chart:month_last_year']
                 }
             ]
         })
