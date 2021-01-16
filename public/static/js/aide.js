@@ -11,7 +11,7 @@ $(document).ready(function() {
                     '{{ssl}}',
                     document.location.protocol === 'https' ? 's' : ''
                 )
-                .replace('{{host}}', document.location.hostname)
+                .replace('{{host}}', document.location.host)
                 .replace(
                     '{{dateStart}}',
                     moment()
