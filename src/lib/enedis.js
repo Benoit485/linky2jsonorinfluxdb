@@ -171,7 +171,7 @@ async function showData(req, res) {
     }
     if (type.indexOf('chart:day_last_month') > -1) {
         const lastInsertTime = await getTimeLastInsertInsideDb('day')
-        log('critical', lastInsertTime)
+        //log('critical', lastInsertTime)
         const date2 = {
             format: date.format,
             start: moment(lastInsertTime)
@@ -179,8 +179,8 @@ async function showData(req, res) {
                 .add(1, 'day'),
             end: moment(lastInsertTime)
         }
-        log('critical', date2.start.format(date2.format))
-        log('critical', date2.end.format(date2.format))
+        //log('critical', date2.start.format(date2.format))
+        //log('critical', date2.end.format(date2.format))
         promise.push(
             getEnergyByDayChartPoints(date2, json, 'chart:day_last_month')
         )
