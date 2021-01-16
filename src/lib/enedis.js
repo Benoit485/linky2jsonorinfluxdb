@@ -119,6 +119,7 @@ async function showData(req, res) {
                 'chart:day_last_year',
                 'chart:day_previous_year',
                 'chart:month_this_year',
+                'chart:month_last_year',
                 'chart:power_last_day'
             )
     }
@@ -232,6 +233,21 @@ async function showData(req, res) {
         }
         promise.push(
             getEnergyByMonthChartPoints(date2, json, 'chart:month_this_year')
+        )
+    }
+    if (type.indexOf('chart:month_last_year') > -1) {
+        const lastInsertTime = await getTimeLastInsertInsideDb('month')
+        const date2 = {
+            format: date.format,
+            start: moment(lastInsertTime)
+                .subtract(1, 'year')
+                .startOf('year'),
+            end: moment(lastInsertTime)
+                .subtract(1, 'year')
+                .endOf('year')
+        }
+        promise.push(
+            getEnergyByMonthChartPoints(date2, json, 'chart:month_last_year')
         )
     }
     if (type.indexOf('chart:year') > -1)
