@@ -21,7 +21,7 @@ const urlConnect =
     'https://mon-compte.enedis.fr/auth/json/authenticate?realm=/enedis&forward=true&spEntityID=SP-ODW-PROD&goto=/auth/SSOPOST/metaAlias/enedis/providerIDP?ReqID%#{reqID}%26index%3Dnull%26acsURL%3Dhttps://apps.lincs.enedis.fr/saml/SSO%26spEntityID%3DSP-ODW-PROD%26binding%3Durn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST&AMAuthCookie='
 const urlConnect2 =
     'https://mon-compte.enedis.fr/auth/json/authenticate?realm=/enedis&spEntityID=SP-ODW-PROD&goto=/auth/SSOPOST/metaAlias/enedis/providerIDP?ReqID%#{reqID}%26index%3Dnull%26acsURL%3Dhttps://apps.lincs.enedis.fr/saml/SSO%26spEntityID%3DSP-ODW-PROD%26binding%3Durn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST&AMAuthCookie='
-const urlAccount = ' https://mon-compte.enedis.fr'
+const urlAccount = 'https://mon-compte.enedis.fr'
 const urlUserInfos = 'https://apps.lincs.enedis.fr/userinfos'
 const urlGetPrmsId =
     'https://apps.lincs.enedis.fr/mes-mesures/api/private/v1/personnes/null/prms'
