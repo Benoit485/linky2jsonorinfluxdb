@@ -16,7 +16,7 @@ let prmId
 // enedis urls
 const urlCookie = 'https://mon-compte-particulier.enedis.fr'
 const urlEnedisAuthenticate =
-    'https://apps.lincs.enedis.fr/authenticate?target=https://mon-compte-particulier.enedis.fr/suivi-de-mesure/'
+    'https://apps.lincs.enedis.fr/authenticate?target=https://mon-compte-particulier.enedis.fr/suivi-de-mesures/'
 const urlConnect =
     'https://mon-compte.enedis.fr/auth/json/authenticate?realm=/enedis&forward=true&spEntityID=SP-ODW-PROD&goto=/auth/SSOPOST/metaAlias/enedis/providerIDP?ReqID%#{reqID}%26index%3Dnull%26acsURL%3Dhttps://apps.lincs.enedis.fr/saml/SSO%26spEntityID%3DSP-ODW-PROD%26binding%3Durn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST&AMAuthCookie='
 const urlConnect2 =
