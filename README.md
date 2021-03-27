@@ -46,9 +46,9 @@ It's easy with Firefox :
 
 Go to Enedis login webpage ([Can go by here directly](https://mon-compte.enedis.fr/auth/XUI/#login/&realm=/enedis&forward=true&spEntityID=SP-ODW-PROD&goto=%2FSSOPOST%2FmetaAlias%2Fenedis%2FproviderIDP%3FReqID%3Da2b4c0i4d7c9eaceja18ia3eg192j7%26index%3Dnull%26acsURL%3Dhttps%253A%252F%252Fapps.lincs.enedis.fr%252Fsaml%252FSSO%26spEntityID%3DSP-ODW-PROD%26binding%3Durn%253Aoasis%253Anames%253Atc%253ASAML%253A2.0%253Abindings%253AHTTP-POST&AMAuthCookie= "Enedis webpage")) and you must do click right and "Inspect" (FR : "Examiner l'élément).
 
-Click on "Storage" tab and find inside Cookies the value for internalAuthId.
+Click on "Storage" ("Stockage" in french) tab and find inside Cookies the value for internalAuthId.
 
-Copy this value to config.sh script.
+Copy this value to /var/config.json script.
 
 ### Help / Request
 
