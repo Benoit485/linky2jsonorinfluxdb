@@ -145,10 +145,10 @@ async function connect(authData) {
         method: 'POST',
         headers: {
             referer: urlSamlRequest,
-            "X-NoSession": true,
-            "X-Password": "anonymous",
-            "X-Requested-With": "XMLHttpRequest",
-            "X-Username": "anonymous"
+            'X-NoSession': true,
+            'X-Password': 'anonymous',
+            'X-Requested-With': 'XMLHttpRequest',
+            'X-Username': 'anonymous'
         }
     }).catch(response => {
         log(
@@ -180,10 +180,10 @@ async function connect(authData) {
         method: 'POST',
         headers: {
             referer: urlConnectFormatted,
-            "X-NoSession": true,
-            "X-Password": "anonymous",
-            "X-Requested-With": "XMLHttpRequest",
-            "X-Username": "anonymous"
+            'X-NoSession': true,
+            'X-Password': 'anonymous',
+            'X-Requested-With': 'XMLHttpRequest',
+            'X-Username': 'anonymous'
         },
         body: jsonAuthDataBasic,
         json: true //  Automatically stringifies the body to JSON
