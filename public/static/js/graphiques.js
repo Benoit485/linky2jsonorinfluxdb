@@ -202,7 +202,7 @@ $(document).ready(function() {
             function(value) {
                 return [
                     moment(value[0])
-                        .add(1, 'month')
+                        .add(1, 'year')
                         .valueOf(),
                     value[1]
                 ]
