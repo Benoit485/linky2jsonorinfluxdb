@@ -497,3 +497,136 @@ function showPower() {
     })
 }
 
+function monthlyUseForEveryYears() {
+
+    var getChart = [
+        'chart:month'
+    ]
+    var urlApiGraph = '/api/' + getChart.join('-')
+
+    moment.locale('fr')
+    charts.setOptions()
+
+    Highcharts.getJSON(urlApiGraph, function(data) {
+
+        const chartMonths = data['chart:month']
+
+        // order by years - month
+        const dataMonths = []
+        const series = [] // for chart
+        const colors = [ // for chart
+            '#1ac0ff',
+            '#fffa39',
+            '#ff1428',
+            '#ff39eb',
+            '#334fff',
+            '#2eb719',
+            '#997007',
+            '#ffebc3'
+        ]
+        let colorIndex = 0
+
+        const firstValue = chartMonths[0]
+        const firstYear = moment(firstValue[2]).format('YYYY')
+        const firstYearInt = parseInt(firstYear)
+        const lastValue = chartMonths[(chartMonths.length-1)]
+        const lastYear = moment(lastValue[2]).format('YYYY')
+        const lastYearInt = parseInt(lastYear)
+
+        // every year
+        for(let year=firstYearInt; year <= lastYearInt; year++) {
+
+            const yearStr = year.toString()
+
+            dataMonths[yearStr] = [];
+
+            // every month
+            for(let month = 1; month <= 12; month++) {
+
+                const dataThisMonth = chartMonths.filter(
+                    value => parseInt(moment(value[2]).format('YYYY')) === year
+                        && parseInt(moment(value[2]).format('M')) === month
+                )
+
+                const monthStrCheck = month.toString();
+                const monthStr = monthStrCheck.length === 1 ? '0' + monthStrCheck : monthStrCheck
+
+                if(dataThisMonth.length > 0) {
+                    dataMonths[yearStr].push(dataThisMonth[0][1])
+                } else {
+                    dataMonths[yearStr].push(0)
+                }
+
+            }
+
+            if(colors[colorIndex] === undefined) {
+                colors[colorIndex] =  '#'+(Math.random()*0xFFFFFF<<0).toString(16)
+            }
+
+            // make series for chart
+            series.push({
+                id: 'monthlyUseForEveryYears_' + yearStr,
+                name: yearStr,
+                color: colors[colorIndex],
+                type: 'column',
+                data: dataMonths[yearStr],
+                tooltip: {
+                    valueSuffix: ' kWh',
+                    valueDecimals: 0
+                }
+            })
+
+            colorIndex++
+        }
+
+        console.log(series)
+
+        charts.create('monthlyUseForEveryYears', {
+            //xAxisMinRange: 'm',
+
+            chart: {
+                type: 'column',
+                renderTo: 'monthlyUseForEveryYears'
+                //height: (!window.screenTop && !window.screenY) ? '5000px' : '200px'
+            },
+
+            xAxis: [
+                {
+                    type: 'category',
+                    categories: longMonths,
+                    crosshair: true,
+                    minTickInterval: false
+                }
+            ],
+
+            yAxis: [
+                {
+                    labels: {
+                        format: '{value} kWh'
+                    }
+                }
+            ],
+
+            plotOptions: {
+                column: {
+                    pointPadding: 0.1,
+                    borderWidth: 0
+                }
+            },
+
+            tooltip: {
+                headerFormat: '<span style="font-size:16px">{point.key}</span><br><br><table>',
+                pointFormat: '<tr><td style="font-size:14px;color:{series.color};padding:0"><b>{series.name}:</b></td>' +
+                    '<td style="font-size:14px;padding:0;padding-left:10px"><b>{point.y:.0f} kWh</b></td></tr>',
+                footerFormat: '</table>',
+                useHTML: true
+            },
+
+            series: series
+        })
+
+        $('#showMonthlyUseForEveryYears').addClass('hide');
+        $('#monthlyUseForEveryYears').removeClass('hide');
+
+    })
+}
