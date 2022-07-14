@@ -416,6 +416,9 @@ $(document).ready(function() {
 
 function showPower() {
 
+    $('#showConso_loading').removeClass('hide');
+    $('#showConso').addClass('hide');
+
     var getChart = [
         'chart:power'
     ]
@@ -463,13 +466,16 @@ function showPower() {
             ]
         })
 
-        $('#showConso').addClass('hide');
+        $('#showConso_loading').addClass('hide');
         $('#graph_conso_w').removeClass('hide');
 
     })
 }
 
 function monthlyUseForEveryYears() {
+
+    $('#showMonthlyUseForEveryYears').addClass('hide');
+    $('#showMonthlyUseForEveryYears_loading').removeClass('hide');
 
     var getChart = [
         'chart:month'
@@ -597,13 +603,17 @@ function monthlyUseForEveryYears() {
             series: series
         })
 
-        $('#showMonthlyUseForEveryYears').addClass('hide');
+        $('#showMonthlyUseForEveryYears_loading').addClass('hide');
         $('#monthlyUseForEveryYears').removeClass('hide');
 
     })
 }
 
 function showByYears() {
+
+    $('#showByYears').addClass('hide');
+    $('#showByYears_loading').removeClass('hide');
+
     var getChart = [
         'chart:year'
     ]
@@ -646,7 +656,7 @@ function showByYears() {
             ]
         })
 
-        $('#showByYears').addClass('hide');
+        $('#showByYears_loading').addClass('hide');
         $('#energy_by_year__every_years').removeClass('hide');
     })
 }
