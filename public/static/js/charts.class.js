@@ -5,6 +5,56 @@
 
 // https://api.highcharts.com/highcharts/
 
+const longMonths = [
+    'Janvier',
+    'Février',
+    'Mars',
+    'Avril',
+    'Mai',
+    'Juin',
+    'Juillet',
+    'Août',
+    'Septembre',
+    'Octobre',
+    'Novembre',
+    'Décembre'
+];
+
+const shortMonths = [
+    'Jan',
+    'Fév',
+    'Mar',
+    'Avr',
+    'Mai',
+    'Jun',
+    'Jul',
+    'Aou',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec'
+];
+
+const weekDays = [
+    'Dimanche',
+    'Lundi',
+    'Mardi',
+    'Mercredi',
+    'Jeudi',
+    'Vendredi',
+    'Samedi'
+];
+
+const shortWeekDays = [
+    'Dim',
+    'Lun',
+    'Mar',
+    'Mer',
+    'Jeu',
+    'Ven',
+    'Sam'
+];
+
 var charts = {
     // https://api.highcharts.com/highcharts/global
 
@@ -13,44 +63,10 @@ var charts = {
     setOptions: function(options = {}) {
         Highcharts.setOptions({
             lang: {
-                months: [
-                    'Janvier',
-                    'Février',
-                    'Mars',
-                    'Avril',
-                    'Mai',
-                    'Juin',
-                    'Juillet',
-                    'Août',
-                    'Septembre',
-                    'Octobre',
-                    'Novembre',
-                    'Décembre'
-                ],
-                shortMonths: [
-                    'Jan',
-                    'Fév',
-                    'Mar',
-                    'Avr',
-                    'Mai',
-                    'Jun',
-                    'Jul',
-                    'Aou',
-                    'Sep',
-                    'Oct',
-                    'Nov',
-                    'Dec'
-                ],
-                weekdays: [
-                    'Dimanche',
-                    'Lundi',
-                    'Mardi',
-                    'Mercredi',
-                    'Jeudi',
-                    'Vendredi',
-                    'Samedi'
-                ],
-                shortWeekdays: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam']
+                months: longMonths,
+                shortMonths: shortMonths,
+                weekdays: weekDays,
+                shortWeekdays: shortWeekDays
             },
             options
         })
