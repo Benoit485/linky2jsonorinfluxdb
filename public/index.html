@@ -129,9 +129,24 @@
         <div class="row mt-2">
             <div class="row">
                 <div class="col-sm-12">
+                    <p class="TitreCadre text-center"><span class="glyphicon glyphicon-fire"></span> Utilisation mensuel avec comparatif entre années</p>
+                    <br>
+                    <div id="showMonthlyUseForEveryYears" class="text-center">
+                        <button id="showMonthlyUseForEveryYears_button" class="btn-primary">Afficher</button>
+                    </div>
+                    <div id="monthlyUseForEveryYears" class="divChart hide"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="row">
+                <div class="col-sm-12">
                     <p class="TitreCadre text-center"><span class="glyphicon glyphicon-fire"></span> Utilisation journalière</p>
                     <br>
-                    <div id="graph_conso_w" class="divChart"></div>
+                    <div id="showConso" class="text-center">
+                        <button id="showConso_button" class="btn-primary">Afficher</button>
+                    </div>
+                    <div id="graph_conso_w" class="divChart hide"></div>
                 </div>
             </div>
         </div>
@@ -140,7 +155,10 @@
                 <div class="col-sm-12">
                     <p class="TitreCadre text-center"><span class="glyphicon glyphicon-fire"></span> Utilisation par années</p>
                     <br>
-                    <div id="energy_by_year__every_years" class="divChart2"></div>
+                    <div id="showByYears" class="text-center">
+                        <button id="showByYears_button" class="btn-primary">Afficher</button>
+                    </div>
+                    <div id="energy_by_year__every_years" class="divChart2 hide"></div>
                 </div>
             </div>
         </div>
