@@ -8,6 +8,10 @@ $(document).ready(function() {
         monthlyUseForEveryYears()
     })
 
+    $('#showByYears_button')[0].addEventListener('click', function(e) {
+        showByYears()
+    })
+
     var getChart = [
         'chart:power_last_day',
         'chart:day_last_month',
@@ -15,7 +19,7 @@ $(document).ready(function() {
         'chart:day_last_year',
         'chart:day_previous_year',
         //'chart:power',
-        'chart:year',
+        //'chart:year',
         'chart:month_this_year',
         'chart:month_last_year'
     ]
@@ -407,38 +411,6 @@ $(document).ready(function() {
                 }
             ]
         })
-
-        charts.create('energy_by_year__every_years', {
-            xAxisMinRange: 'Y',
-
-            tooltip: {
-                dateTimeLabelFormats: {
-                    day: '%Y'
-                }
-            },
-
-            yAxis: [
-                {
-                    labels: {
-                        format: '{value} kWh'
-                    }
-                }
-            ],
-
-            series: [
-                {
-                    id: 'energy_by_year__every_years',
-                    name: 'Energie consommée',
-                    color: '#1ac0ff',
-                    type: 'column',
-                    data: data['chart:year'],
-                    tooltip: {
-                        valueSuffix: ' kWh',
-                        valueDecimals: 0
-                    }
-                }
-            ]
-        })
     }) //Highcharts.getJSON
 }) //$(document).ready
 
@@ -628,5 +600,53 @@ function monthlyUseForEveryYears() {
         $('#showMonthlyUseForEveryYears').addClass('hide');
         $('#monthlyUseForEveryYears').removeClass('hide');
 
+    })
+}
+
+function showByYears() {
+    var getChart = [
+        'chart:year'
+    ]
+    var urlApiGraph = '/api/' + getChart.join('-')
+
+    moment.locale('fr')
+    charts.setOptions()
+
+    Highcharts.getJSON(urlApiGraph, function(data) {
+
+        charts.create('energy_by_year__every_years', {
+            xAxisMinRange: 'Y',
+
+            tooltip: {
+                dateTimeLabelFormats: {
+                    day: '%Y'
+                }
+            },
+
+            yAxis: [
+                {
+                    labels: {
+                        format: '{value} kWh'
+                    }
+                }
+            ],
+
+            series: [
+                {
+                    id: 'energy_by_year__every_years',
+                    name: 'Energie consommée',
+                    color: '#1ac0ff',
+                    type: 'column',
+                    data: data['chart:year'],
+                    tooltip: {
+                        valueSuffix: ' kWh',
+                        valueDecimals: 0
+                    }
+                }
+            ]
+        })
+
+        $('#showByYears').addClass('hide');
+        $('#energy_by_year__every_years').removeClass('hide');
     })
 }
