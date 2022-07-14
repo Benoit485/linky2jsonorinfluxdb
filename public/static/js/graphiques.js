@@ -1,11 +1,20 @@
 $(document).ready(function() {
+
+    $('#showConso_button')[0].addEventListener('click', function(e) {
+        showPower()
+    })
+
+    $('#showMonthlyUseForEveryYears_button')[0].addEventListener('click', function(e) {
+        monthlyUseForEveryYears()
+    })
+
     var getChart = [
         'chart:power_last_day',
         'chart:day_last_month',
         'chart:day_previous_month',
         'chart:day_last_year',
         'chart:day_previous_year',
-        'chart:power',
+        //'chart:power',
         'chart:year',
         'chart:month_this_year',
         'chart:month_last_year'
@@ -279,43 +288,6 @@ $(document).ready(function() {
             ]
         })
 
-        // change kW to W
-        data['chart:power'].map(value => {
-            value[1] *= 1000
-            return value
-        })
-
-        charts.create('graph_conso_w', {
-            xAxisMinRange: 'm',
-
-            chart: {
-                renderTo: 'graph_conso_w'
-                //height: (!window.screenTop && !window.screenY) ? '5000px' : '200px'
-            },
-
-            yAxis: [
-                {
-                    labels: {
-                        format: '{value} W'
-                    }
-                }
-            ],
-
-            series: [
-                {
-                    id: 'graph_conso_w',
-                    name: 'Puissance consommée',
-                    color: '#1ac0ff',
-                    type: 'line',
-                    data: data['chart:power'],
-                    tooltip: {
-                        valueSuffix: ' W',
-                        valueDecimals: 0
-                    }
-                }
-            ]
-        })
-
         data['chart:month_this_year'] = data['chart:month_this_year'].map(
             function(value) {
                 var moment1 = moment(value[0])
@@ -469,3 +441,59 @@ $(document).ready(function() {
         })
     }) //Highcharts.getJSON
 }) //$(document).ready
+
+function showPower() {
+
+    var getChart = [
+        'chart:power'
+    ]
+    var urlApiGraph = '/api/' + getChart.join('-')
+
+    moment.locale('fr')
+    charts.setOptions()
+
+    Highcharts.getJSON(urlApiGraph, function(data) {
+
+        // change kW to W
+        data['chart:power'].map(value => {
+            value[1] *= 1000
+            return value
+        })
+
+        charts.create('graph_conso_w', {
+            xAxisMinRange: 'm',
+
+            chart: {
+                renderTo: 'graph_conso_w'
+                //height: (!window.screenTop && !window.screenY) ? '5000px' : '200px'
+            },
+
+            yAxis: [
+                {
+                    labels: {
+                        format: '{value} W'
+                    }
+                }
+            ],
+
+            series: [
+                {
+                    id: 'graph_conso_w',
+                    name: 'Puissance consommée',
+                    color: '#1ac0ff',
+                    type: 'line',
+                    data: data['chart:power'],
+                    tooltip: {
+                        valueSuffix: ' W',
+                        valueDecimals: 0
+                    }
+                }
+            ]
+        })
+
+        $('#showConso').addClass('hide');
+        $('#graph_conso_w').removeClass('hide');
+
+    })
+}
+
