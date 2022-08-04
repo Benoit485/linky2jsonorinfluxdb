@@ -82,7 +82,7 @@ async function connect(authData) {
     ).catch(response => {
         log(
             'error',
-            `Reception error code ${response.statusCode} (Expected : 200)`
+            `{Step 1} Reception error code ${response.statusCode} (Expected : 200)`
         )
     })
 
@@ -112,7 +112,7 @@ async function connect(authData) {
     }).catch(response => {
         log(
             'error',
-            `Reception error code ${response.statusCode} (Expected : 302)`
+            `{Step 2.1} Reception error code ${response.statusCode} (Expected : 302)`
         )
     })
 
@@ -123,7 +123,7 @@ async function connect(authData) {
     if (responseSendedSamlRequest.statusCode !== 302) {
         log(
             'error',
-            `Reception error code ${responseSendedSamlRequest.statusCode} (Expected : 302)`
+            `{Step 2.2} Reception error code ${responseSendedSamlRequest.statusCode} (Expected : 302)`
         )
         return false
     }
@@ -153,7 +153,7 @@ async function connect(authData) {
     }).catch(response => {
         log(
             'error',
-            `Reception error code ${response.statusCode} (Expected : 200)`
+            `{Step 3.1} Reception error code ${response.statusCode} (Expected : 200)`
         )
     })
 
@@ -190,7 +190,7 @@ async function connect(authData) {
     }).catch(response => {
         log(
             'error',
-            `Reception error code ${response.statusCode} (Expected : 200)`
+            `{Step 3.2} Reception error code ${response.statusCode} (Expected : 200)`
         )
     })
 
@@ -223,7 +223,7 @@ async function connect(authData) {
     }).catch(response => {
         log(
             'error',
-            `Reception error code ${response.statusCode} (Expected : 200)`
+            `{Step 4} Reception error code ${response.statusCode} (Expected : 200)`
         )
     })
 
@@ -252,7 +252,7 @@ async function connect(authData) {
     }).catch(response => {
         log(
             'error',
-            `Reception error code ${response.statusCode} (Expected : 302)`
+            `{Step 5.1} Reception error code ${response.statusCode} (Expected : 302)`
         )
     })
 
@@ -263,7 +263,7 @@ async function connect(authData) {
     if (samlResponseToRequest.statusCode !== 302) {
         log(
             'error',
-            `Reception error code ${samlResponseToRequest.statusCode} (Expected : 302)`
+            `{Step 5.2} Reception error code ${samlResponseToRequest.statusCode} (Expected : 302)`
         )
         return false
     }
