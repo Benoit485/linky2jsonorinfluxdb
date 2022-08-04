@@ -77,9 +77,10 @@ async function connect(authData) {
 
     log('info', `Step 1 : authentification`)
     log('debug', `url: ${urlEnedisAuthenticate}`)
-    const $responseAuthenticate = await requestCheerio(
-        urlEnedisAuthenticate
-    ).catch(response => {
+    const $responseAuthenticate = await requestCheerio({
+        url: urlEnedisAuthenticate,
+        rejectUnauthorized: false // no check certificate, it's unsecure but their certificate have problem now
+    }).catch(response => {
         log(
             'error',
             `{Step 1} Reception error code ${response.statusCode} (Expected : 200)`
@@ -248,7 +249,8 @@ async function connect(authData) {
         form: {
             SAMLResponse: samlResponse
         },
-        simple: false
+        simple: false,
+        rejectUnauthorized: false // no check certificate, it's unsecure but their certificate have problem now
     }).catch(response => {
         log(
             'error',
@@ -270,7 +272,10 @@ async function connect(authData) {
 
     // get information
     log('info', `Get userinfos ==> retrieve av2_interne_id`)
-    const jsonUserData = await requestJson(urlUserInfos).catch(() => {
+    const jsonUserData = await requestJson({
+        url: urlUserInfos,
+        rejectUnauthorized: false // no check certificate, it's unsecure but their certificate have problem now
+    }).catch(() => {
         log('error', `Authentication probably failed`)
     })
 
@@ -288,7 +293,10 @@ async function connect(authData) {
 
     // get primary keyrmation
     log('info', `Retrieve primary key ==> prmId`)
-    const jsonUserData2 = await requestJson(urlGetPrmsId).catch(() => {
+    const jsonUserData2 = await requestJson({
+        url: urlGetPrmsId,
+        rejectUnauthorized: false // no check certificate, it's unsecure but their certificate have problem now
+    }).catch(() => {
         log('error', `Authentication probably failed`)
     })
 
@@ -343,7 +351,10 @@ async function getData(source) {
 
     log('debug', `url : ${url}`)
 
-    const dataJson = await requestJson(url).catch(response => {
+    const dataJson = await requestJson({
+        url: url,
+        rejectUnauthorized: false // no check certificate, it's unsecure but their certificate have problem now
+    }).catch(response => {
         log(
             'error',
             `Unable to retrieve data (${source.type}). Status Code ${response.statusCode}`
